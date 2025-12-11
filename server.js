@@ -234,10 +234,13 @@ class MVSF_Map
             }
 
             console.log (`Database '${sDatabaseName}' created and imported successfully.`);
+			await this.#ApplyDatabaseUpdates (pConnection, sDatabaseName);
          }
          else
          {
             console.log (`Database '${sDatabaseName}' already exists. Skipping initialization.`);
+            await this.#ApplyDatabaseUpdates (pConnection, sDatabaseName);  // NEW
+
          }
 
          await pConnection.end ();
