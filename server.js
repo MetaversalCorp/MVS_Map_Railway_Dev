@@ -277,7 +277,8 @@ async #ApplyDatabaseUpdates (pConnection, sDatabaseName)
 
    // Get list of already-applied updates
    const [aAppliedRows] = await pConnection.query (`SELECT script_name FROM db_update`);
-   const oApplied = new Set (aAppliedRows.map (r => r.name));
+   const oApplied = new Set (aAppliedRows.map (r => r.script_name));
+
 
    // Get all .sql update files, sorted
    const aFiles = fs.readdirSync (sUpdatesDir)
